@@ -1,0 +1,59 @@
+{
+    "name": "phpsimple/orm-traits",
+    "description": "Php Simple Doctrine ORM Traits",
+    "type": "library",
+    "keywords": [
+        "doctrine",
+        "orm",
+        "php",
+        "trait"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "simpletoimplement",
+            "email": "simpletoimplement@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=8.0.0",
+        "doctrine/orm": "*",
+        "symfony/doctrine-bridge": ">=6.1"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "*",
+        "spaghetti/php-cs-fixer-config": ">=1.1",
+        "roave/security-advisories": "dev-latest",
+        "phpunit/phpunit": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "PhpSimple\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "PhpSimple\\Tests\\": "tests/src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-simple": "1.x-dev"
+        },
+        "thanks": {
+            "name": "phpsimple/orm-traits",
+            "url": "https://github.com/phpsimple/orm-traits"
+        }
+    },
+    "funding": [
+        {
+            "type": "issuehunt",
+            "url": "https://issuehunt.io/r/phpsimple/orm-traits"
+        }
+    ]
+}
