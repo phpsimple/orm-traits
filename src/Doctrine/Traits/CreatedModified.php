@@ -3,26 +3,26 @@
 namespace PhpSimple\Doctrine\Traits;
 
 use DateTimeImmutable;
-use DateTimeZone;
 use Doctrine\ORM\Mapping as ORM;
 use Exception;
+use PhpSimple\UTCDateTimeImmutable;
 
 trait CreatedModified
 {
     #[ORM\Column(type: 'datetime_immutable', options: ['default' => 'CURRENT_TIMESTAMP'])]
-    protected ?DateTimeImmutable $creationDate = null;
+    protected ?DateTimeImmutable $createdAt = null;
 
     #[ORM\Column(type: 'datetime_immutable', options: ['default' => 'CURRENT_TIMESTAMP'])]
-    protected ?DateTimeImmutable $modificationDate = null;
+    protected ?DateTimeImmutable $updatedAt = null;
 
-    public function getModificationDate(): DateTimeImmutable
+    public function getUpdatedAt(): ?DateTimeImmutable
     {
-        return $this->modificationDate;
+        return $this->updatedAt;
     }
 
-    public function setModificationDate(?DateTimeImmutable $modificationDate): static
+    public function setUpdatedAt(?DateTimeImmutable $updatedAt): static
     {
-        $this->modificationDate = $this->modifyTimezone(dateTime: $modificationDate);
+        $this->updatedAt = $this->modifyTimezone(dateTimeImmutable: $updatedAt);
 
         return $this;
     }
@@ -34,33 +34,31 @@ trait CreatedModified
     #[ORM\PreUpdate]
     public function updatedTimestamps(): static
     {
-        $this->setModificationDate(modificationDate: $this->modifyTimezone(dateTime: new DateTimeImmutable()));
+        $this->setUpdatedAt(updatedAt: new UTCDateTimeImmutable());
 
-        if (null === $this->creationDate) {
-            $this->setCreationDate(creationDate: $this->modifyTimezone(dateTime: new DateTimeImmutable()));
+        if (null === $this->createdAt) {
+            $this->setCreatedAt(createdAt: new UTCDateTimeImmutable());
         }
 
         return $this;
     }
 
-    public function getCreationDate(): DateTimeImmutable
+    public function getCreatedAt(): ?DateTimeImmutable
     {
-        return $this->creationDate;
+        return $this->createdAt;
     }
 
-    public function setCreationDate(?DateTimeImmutable $creationDate): static
+    public function setCreatedAt(?DateTimeImmutable $createdAt): static
     {
-        $this->creationDate = $this->modifyTimezone(dateTime: $creationDate);
+        $this->createdAt = $this->modifyTimezone(dateTimeImmutable: $createdAt);
 
         return $this;
     }
 
-    private function modifyTimezone(?DateTimeImmutable $dateTime): ?DateTimeImmutable
+    protected function modifyTimezone(?DateTimeImmutable $dateTimeImmutable): ?DateTimeImmutable
     {
-        if (null !== $dateTime) {
-            $timezone = new DateTimeZone(timezone: 'UTC');
-
-            return DateTimeImmutable::createFromInterface(object: $dateTime)->setTimezone(timezone: $timezone);
+        if (null !== $dateTimeImmutable) {
+            return UTCDateTimeImmutable::createFromInterface(object: $dateTimeImmutable);
         }
 
         return null;
