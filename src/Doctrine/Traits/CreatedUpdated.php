@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Exception;
 use PhpSimple\UTCDateTimeImmutable;
 
-trait CreatedModified
+trait CreatedUpdated
 {
     #[ORM\Column(type: 'datetime_immutable', options: ['default' => 'CURRENT_TIMESTAMP'])]
     protected ?DateTimeImmutable $createdAt = null;

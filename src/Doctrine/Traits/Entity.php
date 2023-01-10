@@ -4,7 +4,7 @@ namespace PhpSimple\Doctrine\Traits;
 
 trait Entity
 {
-    use CreatedModified;
+    use CreatedUpdated;
     use Id;
     use Serializable;
     use Status;
