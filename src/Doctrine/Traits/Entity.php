@@ -6,6 +6,6 @@ trait Entity
 {
     use CreatedUpdated;
     use Id;
+    use IsActive;
     use Serializable;
-    use Status;
 }
