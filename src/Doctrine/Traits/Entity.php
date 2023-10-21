@@ -7,4 +7,5 @@ trait Entity
     use CreatedUpdated;
     use Id;
     use IsActive;
+    use Version;
 }
