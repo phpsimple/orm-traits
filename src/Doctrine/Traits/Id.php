@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 trait Id
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue(strategy: 'IDENTITY')]
+    #[ORM\GeneratedValue(strategy: 'SEQUENCE')]
     #[ORM\Column(type: 'integer', unique: true)]
     protected ?int $id = null;
 
