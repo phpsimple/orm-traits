@@ -18,7 +18,8 @@
     "require": {
         "php": ">=8.0.0",
         "doctrine/orm": "*",
-        "symfony/doctrine-bridge": ">=6.1"
+        "symfony/doctrine-bridge": ">=6.1",
+        "symfony/serializer": ">=6.1"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "*",
